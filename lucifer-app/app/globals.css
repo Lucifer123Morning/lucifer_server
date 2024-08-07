@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply font-primary bg-primary text-white leading-loose;
+    }
+    .btn-accent {
+        @apply bg-accent text-white;
+    }
+    .btn-accent:hover {
+        @apply bg-accent-hover;
+    }
+}
