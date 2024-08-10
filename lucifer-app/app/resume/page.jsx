@@ -1,5 +1,5 @@
 "use client"
-
+import { useState } from 'react';
 import {
     FaHtml5,
     FaCss3,
@@ -86,26 +86,28 @@ const education = {
     items: [
         {
             institution: "www.boot.dev",
+            url: "https://www.boot.dev",
             degree: "Back-end Developer",
             duration: '2023'
         },
         {
             institution: "www.codecademy.com",
+            url: "https://www.codecademy.com",
             degree: "Back-end Developer",
             duration: '2024',
         },
         {
             institution: "www.codecademy.com",
+            url: "https://www.codecademy.com",
             degree: "Front-end Developer",
             duration: '2024',
         },
         {
             institution: "www.codecademy.com",
+            url: "https://www.codecademy.com",
             degree: "FullStack Developer",
             duration: '2024',
         },
-
-
     ]
 }
 
@@ -153,6 +155,8 @@ import {ScrollArea} from "@/components/ui/scroll-area";
 import {motion} from "framer-motion";
 
 const Resume = () => {
+    const [activeTab, setActiveTab] = useState('experience');
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -166,41 +170,56 @@ const Resume = () => {
                 <Tabs
                     defaultValue="experience"
                     className="flex flex-col xl:flex-row gap-[60px]"
+                    onValueChange={(value) => setActiveTab(value)}
                 >
                     <TabsList className="flex flex-col w-full max-w-[380px] mx-auto xl:mx-0 gap-6">
-                        <TabsTrigger value="experience">Experience</TabsTrigger>
-                        <TabsTrigger value="education">Education</TabsTrigger>
-                        <TabsTrigger value="skills">Skills</TabsTrigger>
-                        <TabsTrigger value="about">About me</TabsTrigger>
+                        <TabsTrigger value="experience" className={`relative text-xl font-semibold py-2 px-4 rounded-lg bg-bg-primary text-white transition-all duration-300 focus:outline-none ${activeTab === 'experience' ? 'ring-2 ring-accent' : ''}`}>
+                            Experience
+                            <div className={`absolute inset-y-0 left-0 w-2 bg-accent rounded-r-lg ${activeTab === 'experience' ? 'opacity-0' : ''}`}></div>
+                        </TabsTrigger>
+                        <TabsTrigger value="education" className={`relative text-xl font-semibold py-2 px-4 rounded-lg bg-bg-primary text-white transition-all duration-300 focus:outline-none ${activeTab === 'education' ? 'ring-2 ring-accent' : ''}`}>
+                            Education
+                            <div className={`absolute inset-y-0 left-0 w-2 bg-accent rounded-r-lg ${activeTab === 'education' ? 'opacity-0' : ''}`}></div>
+                        </TabsTrigger>
+                        <TabsTrigger value="skills" className={`relative text-xl font-semibold py-2 px-4 rounded-lg bg-bg-primary text-white transition-all duration-300 focus:outline-none ${activeTab === 'skills' ? 'ring-2 ring-accent' : ''}`}>
+                            Skills
+                            <div className={`absolute inset-y-0 left-0 w-2 bg-accent rounded-r-lg ${activeTab === 'skills' ? 'opacity-0' : ''}`}></div>
+                        </TabsTrigger>
+                        <TabsTrigger value="about" className={`relative text-xl font-semibold py-2 px-4 rounded-lg bg-bg-primary text-white transition-all duration-300 focus:outline-none ${activeTab === 'about' ? 'ring-2 ring-accent' : ''}`}>
+                            About me
+                            <div className={`absolute inset-y-0 left-0 w-2 bg-accent rounded-r-lg ${activeTab === 'about' ? 'opacity-0' : ''}`}></div>
+                        </TabsTrigger>
                     </TabsList>
 
                     {/* content */}
-                    <div className="min-h-[70vh] w-full">
+                    <div className="min-h-[70vh] w-full overflow-hidden">
                         {/* experience */}
                         <TabsContent value='experience' className="w-full">
                             <div className="flex flex-col gap-[30px] text-center xl:text-left">
                                 <h3 className="text-4xl font-bold">{experience.title}</h3>
                                 <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">{experience.description}</p>
-                                <ScrollArea className="h-[400px]">
-                                    <ul className="grid grid-cols-1 lg:grid-cols-2 grap-[30px]">
-                                        {experience.items.map((item, index) => {
-                                            return (
-                                                <li key={index} className="bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center
-                                                items-center lg:items-start gap-1">
-                                                <span className="text-accent">{item.duration}</span>
-                                                    <h3 className="text-xl max-2-[260px] min-h-[60px]
-                                                    text-center lg:text-left">{item.position}</h3>
+                                <div className="max-h-[400px] overflow-auto">
+                                    <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
+                                        {experience.items.map((item, index) => (
+                                            <a
+                                                key={index}
+                                                href={item.url} // Add the URL property if you have one
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="block"
+                                            >
+                                                <li className="bg-bg-primary h-[184px] py-6 px-10 rounded-xl border-l-4 border-accent flex flex-col justify-center items-center lg:items-start gap-1 overflow-hidden">
+                                                    <span className="text-accent">{item.duration}</span>
+                                                    <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left truncate">{item.position}</h3>
                                                     <div className="flex items-center gap-3">
-                                                        {/* dat */}
-                                                        <span className="w-[6px] h-[6px] rounded-full
-                                                        bg-accent"></span>
+                                                        <span className="w-[6px] h-[6px] rounded-full bg-accent"></span>
                                                         <p className="text-white/60">{item.company}</p>
                                                     </div>
-                                            </li>
-                                            )
-                                        })}
+                                                </li>
+                                            </a>
+                                        ))}
                                     </ul>
-                                </ScrollArea>
+                                </div>
                             </div>
                         </TabsContent>
 
@@ -209,26 +228,28 @@ const Resume = () => {
                             <div className="flex flex-col gap-[30px] text-center xl:text-left">
                                 <h3 className="text-4xl font-bold">{education.title}</h3>
                                 <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">{education.description}</p>
-                                <ScrollArea className="h-[400px]">
-                                    <ul className="grid grid-cols-1 lg:grid-cols-2 grap-[30px]">
-                                        {education.items.map((item, index) => {
-                                            return (
-                                                <li key={index} className="bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center
-                                                items-center lg:items-start gap-1">
+                                <div className="max-h-[400px] overflow-auto">
+                                    <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
+                                        {education.items.map((item, index) => (
+                                            <a
+                                                key={index}
+                                                href={item.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="block"
+                                            >
+                                                <li className="bg-bg-primary h-[184px] py-6 px-10 rounded-xl border-l-4 border-accent flex flex-col justify-center items-center lg:items-start gap-1 overflow-hidden">
                                                     <span className="text-accent">{item.degree}</span>
-                                                    <h3 className="text-xl max-2-[260px] min-h-[60px]
-                                                    text-center lg:text-left">{item.duration}</h3>
+                                                    <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left truncate">{item.duration}</h3>
                                                     <div className="flex items-center gap-3">
-                                                        {/* dat */}
-                                                        <span className="w-[6px] h-[6px] rounded-full
-                                                        bg-accent"></span>
+                                                        <span className="w-[6px] h-[6px] rounded-full bg-accent"></span>
                                                         <p className="text-white/60">{item.institution}</p>
                                                     </div>
                                                 </li>
-                                            )
-                                        })}
+                                            </a>
+                                        ))}
                                     </ul>
-                                </ScrollArea>
+                                </div>
                             </div>
                         </TabsContent>
 
@@ -244,7 +265,7 @@ const Resume = () => {
                                         <li key={index}>
                                             <TooltipProvider delayDuration={100}>
                                                 <Tooltip>
-                                                    <TooltipTrigger className="w-full h-[150px] bg-[#232329] rounded-xl flex justify-center items-center group">
+                                                    <TooltipTrigger className="w-full h-[150px] bg-bg-primary border border-border-primary rounded-xl flex justify-center items-center group overflow-hidden">
                                                         <div className="text-2xl group-hover:text-accent transition-all duration-300">
                                                             {item.icon}
                                                         </div>
@@ -262,21 +283,27 @@ const Resume = () => {
 
                         {/* about */}
                         <TabsContent value='about' className="w-full text-center xl:text-left">
-                            <div className="flex flex-col gap-[30px]">
-                                <h3 className="text-4xl font-bold">{about.title}</h3>
-                                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
+                            <div className="flex flex-col gap-8 xl:gap-12">
+                                <h3 className="text-4xl font-bold text-gradient bg-clip-text text-transparent">
+                                    {about.title}
+                                </h3>
+                                <p className="max-w-2xl text-white/80 mx-auto xl:mx-0 break-words">
                                     {about.description}
                                 </p>
-                                <ul className="grid grid-cols-1 xl:grid-cols-2 gap-y-6 max-w-[620px] mx-auto xl:mx-0">
+                                <ul className="grid grid-cols-1 xl:grid-cols-2 gap-8 max-w-3xl mx-auto xl:mx-0">
                                     {about.info.map((item, index) => (
-                                        <li key={index} className="flex items-center xl:justify-start gap-4">
-                                            <span className="text-white/60">{item.fieldName}:</span>
-                                            <span className="text-xl">{item.fieldValue}</span>
+                                        <li
+                                            key={index}
+                                            className="flex flex-col gap-4 items-start border border-border-primary p-6 rounded-xl bg-bg-primary shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out w-full break-words"
+                                        >
+                                            <span className="text-white/90 font-semibold text-lg">{item.fieldName}:</span>
+                                            <span className="text-xl text-white break-words">{item.fieldValue}</span>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
                         </TabsContent>
+
                     </div>
                 </Tabs>
             </div>
