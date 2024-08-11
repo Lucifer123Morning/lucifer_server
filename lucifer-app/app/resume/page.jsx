@@ -22,7 +22,7 @@ const about = {
         },
         {
             fieldName: "Phone",
-            fieldValue: "(0982032042)",
+            fieldValue: "(+380982032942)",
         },
         {
             fieldName: "Experience",

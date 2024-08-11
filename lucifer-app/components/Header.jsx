@@ -9,10 +9,6 @@ import MobileNav from "@/components/MobileNav";
 const Header = () => {
     return (
         <>
-            <Head>
-                <link rel="icon" href="/favicon.ico" />
-                <title>Lucifer's Portfolio</title>
-            </Head>
             <header className="py-8 xl:py-12 text-white">
                 <div className="container mx-auto flex justify-between items-center">
                     <Link href="/">

@@ -1,7 +1,13 @@
 "use client";
+import {motion} from "framer-motion";
 
 const Music = () => {
     return (
+        <motion.div
+            initial={{opacity: 0}}
+            animate={{opacity: 1, transition: {delay: 2.4, duration: 0.4, ease: 'easeIn'},
+                }}
+        >
         <div className="relative p-6 bg-primary rounded-xl shadow-xl max-w-4xl mx-auto border-4 border-accent">
             {/* Title Container with Green Edges */}
             <div className="relative bg-primary border-4 border-accent rounded-xl p-6 mb-6 shadow-md">
@@ -34,6 +40,7 @@ const Music = () => {
                 </a>
             </div>
         </div>
+        </motion.div>
     );
 };
 
