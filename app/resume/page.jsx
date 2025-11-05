@@ -149,8 +149,8 @@ const skills = {
     ]
 }
 
-import {Tabs, TabsContent, TabsList, TabsTrigger} from 'components/ui/tabs'
-import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "components/ui/tooltip";
+import {Tabs, TabsContent, TabsList, TabsTrigger} from '../../components/ui/tabs'
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "../../components/ui/tooltip";
 import {ScrollArea} from "components/ui/scroll-area";
 import {motion} from "framer-motion";
 
