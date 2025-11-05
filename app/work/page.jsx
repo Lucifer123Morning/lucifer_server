@@ -11,7 +11,7 @@ import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from 'compon
 
 import Link from "next/link";
 import Image from "next/image";
-import WorkSliderBtns from "components/WorkSliderBtns";
+import WorkSliderBtns from "../../components/WorkSliderBtns";
 
 const projectData = [
     {
