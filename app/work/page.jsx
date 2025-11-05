@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 import { BsArrowDownRight, BsGithub } from "react-icons/bs";
-import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from 'components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '../../components/ui/tooltip';
 
 import Link from "next/link";
 import Image from "next/image";
