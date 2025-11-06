@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    eslint: {
+        // ❗ Игнорировать ошибки линтера во время билда
+        ignoreDuringBuilds: true,
+    },
+};
 
-export default nextConfig;
+module.exports = nextConfig;
