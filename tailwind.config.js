@@ -7,6 +7,16 @@ module.exports = {
     './app/**/*.{js,jsx}',
     './src/**/*.{js,jsx}',
   ],
+  safelist: [
+    // Чтобы Tailwind не удалил динамические классы, используемые в Resume и других компонентах
+    "ring-2",
+    "ring-accent",
+    "opacity-0",
+    "text-accent",
+    "bg-bg-primary",
+    "border-accent",
+    "border-border-primary",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -29,6 +39,8 @@ module.exports = {
           DEFAULT: '#00ff99',
           hover: '#00e187',
         },
+        "bg-primary": '#27272c',
+        "border-primary": '#2e2e35',
       },
       keyframes: {
         "accordion-down": {
@@ -47,4 +59,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};
