@@ -1,6 +1,7 @@
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const Header = dynamic(() => import('../components/Header'), { ssr: false });
 const StairTransition = dynamic(() => import('../components/StairTransition'), { ssr: false });

@@ -81,32 +81,34 @@ export default function ResumeClient() {
         <div className="container mx-auto">
             <Tabs
                 defaultValue="experience"
-                className="min-h-[80vh] flex flex-col xl:flex-row items-center xl:items-start justify-center gap-[80px] xl:gap-[120px]"
+                className="flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between gap-[80px] xl:gap-[120px] min-h-screen"
                 onValueChange={(v) => setActiveTab(v)}
             >
                 {/* Левая колонка */}
-                <TabsList className="flex flex-col items-start justify-center xl:justify-start gap-5 w-full max-w-[240px] bg-transparent border-none p-0">
-                    {[
-                        { value: "experience", label: "Experience" },
-                        { value: "education", label: "Education" },
-                        { value: "skills", label: "Skills" },
-                        { value: "about", label: "About me" },
-                    ].map((tab) => (
-                        <TabsTrigger
-                            key={tab.value}
-                            value={tab.value}
-                            className={`w-full text-left text-lg font-semibold py-3 px-5 rounded-lg border-l-4 transition-all duration-300 ${
-                                activeTab === tab.value
-                                    ? "border-accent text-accent bg-primary shadow-[0_0_10px_rgba(0,255,150,0.3)]"
-                                    : "border-transparent text-white/80 hover:text-accent hover:border-accent/60"
-                            }`}
-                        >
-                            {tab.label}
-                        </TabsTrigger>
-                    ))}
-                </TabsList>
+                <div className="flex flex-col items-center justify-center w-full xl:w-[280px] h-full">
+                    <TabsList className="flex flex-col items-stretch justify-center gap-8 w-full bg-transparent border-none p-0">
+                        {[
+                            { value: "experience", label: "Experience" },
+                            { value: "education", label: "Education" },
+                            { value: "skills", label: "Skills" },
+                            { value: "about", label: "About me" },
+                        ].map((tab) => (
+                            <TabsTrigger
+                                key={tab.value}
+                                value={tab.value}
+                                className={`w-full text-left text-2xl font-bold py-8 px-8 rounded-xl border-l-4 transition-all duration-300 ${
+                                    activeTab === tab.value
+                                        ? "border-accent text-accent bg-primary shadow-[0_0_20px_rgba(0,255,150,0.3)]"
+                                        : "border-transparent text-white/80 hover:text-accent"
+                                }`}
+                            >
+                                {tab.label}
+                            </TabsTrigger>
+                        ))}
+                    </TabsList>
+                </div>
 
-                <div className="min-h-[80vh] flex flex-col justify-start">
+                <div className="flex-1 w-full xl:w-auto">
                     <TabsContent value='experience' className="w-full">
                         <div className="flex flex-col gap-[30px] text-center xl:text-left">
                             <h3 className="text-4xl font-bold">{experience.title}</h3>
@@ -118,7 +120,8 @@ export default function ResumeClient() {
                                             key={index}
                                             className="bg-bg-primary h-[184px] py-6 px-10 rounded-xl border-l-4 border-accent flex flex-col justify-center items-center lg:items-start gap-1 overflow-hidden"
                                         >
-                                            <a href={item.url} target="_blank" rel="noopener noreferrer" className="w-full h-full block">
+                                            <a href={item.url} target="_blank" rel="noopener noreferrer"
+                                               className="w-full h-full block">
                                                 <span className="text-accent">{item.duration}</span>
                                                 <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left truncate">
                                                     {item.position}
@@ -146,7 +149,8 @@ export default function ResumeClient() {
                                             key={index}
                                             className="bg-bg-primary h-[184px] py-6 px-10 rounded-xl border-l-4 border-accent flex flex-col justify-center items-center lg:items-start gap-1 overflow-hidden"
                                         >
-                                            <a href={item.url} target="_blank" rel="noopener noreferrer" className="w-full h-full block">
+                                            <a href={item.url} target="_blank" rel="noopener noreferrer"
+                                               className="w-full h-full block">
                                                 <span className="text-accent">{item.degree}</span>
                                                 <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left truncate">
                                                     {item.duration}
@@ -174,8 +178,10 @@ export default function ResumeClient() {
                                     <li key={index}>
                                         <TooltipProvider delayDuration={100}>
                                             <Tooltip>
-                                                <TooltipTrigger className="w-full h-[150px] bg-bg-primary border border-border-primary rounded-xl flex justify-center items-center group overflow-hidden">
-                                                    <span className="text-2xl group-hover:text-accent transition-all duration-300">
+                                                <TooltipTrigger
+                                                    className="w-full h-[150px] bg-bg-primary border border-border-primary rounded-xl flex justify-center items-center group overflow-hidden">
+                                                    <span
+                                                        className="text-2xl group-hover:text-accent transition-all duration-300">
                                                         {item.icon}
                                                     </span>
                                                 </TooltipTrigger>
@@ -196,7 +202,8 @@ export default function ResumeClient() {
                             <p className="max-w-2xl text-white/80 mx-auto xl:mx-0 break-words">{about.description}</p>
                             <ul className="grid grid-cols-1 xl:grid-cols-2 gap-8 max-w-3xl mx-auto xl:mx-0">
                                 {about.info.map((item, index) => (
-                                    <li key={index} className="flex flex-col gap-4 items-start border border-border-primary p-6 rounded-xl bg-bg-primary shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out w-full break-words">
+                                    <li key={index}
+                                        className="flex flex-col gap-4 items-start border border-border-primary p-6 rounded-xl bg-bg-primary shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out w-full break-words">
                                         <span className="text-white/90 font-semibold text-lg">{item.fieldName}:</span>
                                         <span className="text-xl text-white break-words">{item.fieldValue}</span>
                                     </li>
@@ -211,7 +218,7 @@ export default function ResumeClient() {
 
     return mounted ? (
         <motion.div
-            initial={{ opacity: 0 }}
+            initial={{opacity: 0}}
             animate={{ opacity: 1, transition: { delay: 2.4, duration: 0.4, ease: 'easeIn' } }}
             className="min-h-[80vh] flex items-start justify-start py-12 xl:py-0"
         >
