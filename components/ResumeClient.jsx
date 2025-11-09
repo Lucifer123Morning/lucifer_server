@@ -81,12 +81,12 @@ export default function ResumeClient() {
         <div className="container mx-auto">
             <Tabs
                 defaultValue="experience"
-                className="flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between gap-[80px] xl:gap-[120px] min-h-screen"
+                className="flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between gap-[60px] xl:gap-[100px] min-h-screen"
                 onValueChange={(v) => setActiveTab(v)}
             >
                 {/* Левая колонка */}
-                <div className="flex flex-col items-center justify-center w-full xl:w-[280px] h-screen">
-                    <TabsList className="flex flex-col items-stretch justify-center gap-6 w-full bg-transparent border-none p-0">
+                <div className="flex flex-col items-center justify-center w-full xl:w-[240px] h-auto xl:h-screen sticky top-0">
+                    <TabsList className="flex flex-col items-stretch justify-center gap-4 w-full bg-transparent border-none p-0">
                         {[
                             { value: "experience", label: "Experience" },
                             { value: "education", label: "Education" },
@@ -96,9 +96,9 @@ export default function ResumeClient() {
                             <TabsTrigger
                                 key={tab.value}
                                 value={tab.value}
-                                className={`w-full text-left text-lg font-semibold py-4 px-6 rounded-lg border-l-4 transition-all duration-300 ${
+                                className={`w-full text-left text-base font-semibold py-3 px-5 rounded-lg border-l-4 transition-all duration-300 ${
                                     activeTab === tab.value
-                                        ? "border-accent text-accent bg-primary shadow-[0_0_12px_rgba(0,255,150,0.25)]"
+                                        ? "border-accent text-accent bg-primary shadow-[0_0_10px_rgba(0,255,150,0.25)]"
                                         : "border-transparent text-white/80 hover:text-accent"
                                 }`}
                             >
@@ -108,7 +108,7 @@ export default function ResumeClient() {
                     </TabsList>
                 </div>
 
-                <div className="flex-1 w-full xl:w-auto">
+                <div className="flex-1">
                     <TabsContent value='experience' className="w-full">
                         <div className="flex flex-col gap-[30px] text-center xl:text-left">
                             <h3 className="text-4xl font-bold">{experience.title}</h3>
