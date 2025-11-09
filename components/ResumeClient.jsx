@@ -86,7 +86,7 @@ export default function ResumeClient() {
             >
                 {/* Левая колонка */}
                 <div className="flex flex-col items-center justify-center w-full xl:w-[280px] h-full">
-                    <TabsList className="flex flex-col items-stretch justify-center gap-8 w-full bg-transparent border-none p-0">
+                    <TabsList className="flex flex-col items-stretch justify-center gap-6 w-full bg-transparent border-none p-0">
                         {[
                             { value: "experience", label: "Experience" },
                             { value: "education", label: "Education" },
@@ -96,9 +96,9 @@ export default function ResumeClient() {
                             <TabsTrigger
                                 key={tab.value}
                                 value={tab.value}
-                                className={`w-full text-left text-2xl font-bold py-8 px-8 rounded-xl border-l-4 transition-all duration-300 ${
+                                className={`w-full text-left text-lg font-semibold py-5 px-6 rounded-lg border-l-4 transition-all duration-300 ${
                                     activeTab === tab.value
-                                        ? "border-accent text-accent bg-primary shadow-[0_0_20px_rgba(0,255,150,0.3)]"
+                                        ? "border-accent text-accent bg-primary shadow-[0_0_12px_rgba(0,255,150,0.25)]"
                                         : "border-transparent text-white/80 hover:text-accent"
                                 }`}
                             >
