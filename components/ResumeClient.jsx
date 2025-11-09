@@ -96,7 +96,7 @@ export default function ResumeClient() {
                             <TabsTrigger
                                 key={tab.value}
                                 value={tab.value}
-                                className={`w-full text-left text-base font-semibold py-3 px-5 rounded-lg border-l-4 transition-all duration-300 ${
+                                className={`w-full text-left text-base font-semibold py-4 px-6 rounded-lg border-l-4 transition-all duration-300 ${
                                     activeTab === tab.value
                                         ? "border-accent text-accent bg-primary shadow-[0_0_10px_rgba(0,255,150,0.25)]"
                                         : "border-transparent text-white/80 hover:text-accent"
