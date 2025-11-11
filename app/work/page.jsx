@@ -19,10 +19,10 @@ const projectData = [
         category: 'frontend',
         title: 'project 1',
         description: 'first project',
-        stack: [{ name: 'Html 5' }, { name: 'CSS 3' }, { name: 'JavaScript' }],
-        image: '/assets/work/thumb1.png',
-        live: '',
-        github: ''
+        stack: [{ name: 'Html' }, { name: 'CSS' }, { name: 'JavaScript' }, { name: 'Next.js' }],
+        image: '/assets/work/project1.png',
+        live: 'https://lucifer-server.vercel.app',
+        github: 'https://github.com/Lucifer123Morning/lucifer_server'
     },
     {
         num: '02',
@@ -30,18 +30,18 @@ const projectData = [
         title: 'project 2',
         description: 'second project',
         stack: [{ name: 'Next.js' }, { name: 'Tailwind.css' }, { name: 'Node.js' }],
-        image: '/assets/work/thumb2.png',
+        image: '/assets/work/project2.png',
         live: '',
-        github: ''
+        github: 'https://github.com/Lucifer123Morning/Lucifer-Portfolio'
     },
     {
         num: '03',
         category: 'frontend',
         title: 'project 3',
         description: 'third project',
-        stack: [{ name: 'Next.js' }, { name: 'Tailwind.css' }],
-        image: '/assets/work/thumb3.png',
-        github: '',
+        stack: [{ name: 'Python' }],
+        image: '/assets/work/project3.png',
+        github: 'https://github.com/Lucifer123Morning/asteroid_game',
     },
 ];
 

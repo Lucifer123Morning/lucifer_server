@@ -75,7 +75,7 @@ export default function ResumeClient() {
             >
                 {/* Sidebar: смещён вниз, имеет больший z-index, больше статичности (убран scale) */}
                 <div
-                    className="hidden xl:flex flex-col items-center justify-center w-[240px] h-screen sticky top-1/2 -translate-y-1/2">
+                    className="hidden xl:flex flex-col items-center justify-center w-[240px] h-screen sticky top-1/2 -translate-y-[43%]">
                     <TabsList
                         className="flex flex-col items-center justify-center gap-4 w-full bg-transparent border-none p-0">
                         {[

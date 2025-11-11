@@ -3,17 +3,18 @@
 import CountUp from "react-countup";
 import { useEffect, useState } from "react";
 
-const calculateYearsOfExperience = () => {
-    const startYear = 2019; // Замените на год начала вашего опыта
+const calculateYearsOfExperience = (startYear = 2019) => {
     const currentYear = new Date().getFullYear();
-    return currentYear - startYear;
+    const experience = currentYear - startYear;
+    return experience < 0 ? 0 : experience; // защита от ошибок
 };
 
-const Stats = () => {
-    const [years, setYears] = useState(calculateYearsOfExperience());
+export const Stats = () => {
+    const [years, setYears] = useState(0);
 
     useEffect(() => {
-        setYears(calculateYearsOfExperience());
+        // при монтировании вычисляем опыт
+        setYears(calculateYearsOfExperience(2024));
     }, []);
 
     const stats = [
@@ -22,7 +23,7 @@ const Stats = () => {
             text: "Years of experience",
         },
         {
-            num: 26,
+            num: 8,
             text: "Projects completed",
         },
         {
@@ -44,20 +45,17 @@ const Stats = () => {
                             key={index}
                             className="flex-1 flex gap-4 items-center justify-center xl:justify-start"
                         >
-                            <div className="relative">
+                            <div className="relative flex flex-col items-center">
                                 <CountUp
                                     end={item.num}
-                                    duration={5}
-                                    delay={2}
-                                    className="text-4xl xl:text-6xl font-extrabold countup-animation"
+                                    duration={2.5}
+                                    delay={0.5}
+                                    className="text-4xl xl:text-6xl font-extrabold text-accent"
                                 />
-                                {item.text === "Years of experience" && (
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="countup-circle"></div>
-                                    </div>
-                                )}
+                                <p className="text-white/80 text-sm mt-2 text-center">
+                                    {item.text}
+                                </p>
                             </div>
-                            <p className={`max-w-[${item.text.length < 15 ? "100px" : "150px"}]`}>{item.text}</p>
                         </div>
                     ))}
                 </div>
@@ -65,5 +63,3 @@ const Stats = () => {
         </section>
     );
 };
-
-export { Stats };
