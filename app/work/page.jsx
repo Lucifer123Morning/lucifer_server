@@ -16,7 +16,7 @@ import WorkSliderBtns from "../../components/WorkSliderBtns";
 const projectData = [
     {
         num: '01',
-        category: 'frontend',
+        category: 'fullstack',
         title: 'project 1',
         description: 'first project',
         stack: [{ name: 'Html' }, { name: 'CSS' }, { name: 'JavaScript' }, { name: 'Next.js' }],
@@ -36,7 +36,7 @@ const projectData = [
     },
     {
         num: '03',
-        category: 'frontend',
+        category: 'gamedev',
         title: 'project 3',
         description: 'third project',
         stack: [{ name: 'Python' }],

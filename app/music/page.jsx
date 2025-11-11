@@ -17,7 +17,7 @@ const Music = () => {
             {/* Spotify iframe */}
             <div className="relative">
                 <iframe
-                    src="https://open.spotify.com/embed/playlist/0lQPvOGDJRB6ZWK2joqV71?si=c9c3fcf8e10848f7"
+                    src="https://open.spotify.com/playlist/2P5RMFEbF7Mxu1PVIIKf8y?si=75ac26ba979e470e"
                     width="100%"
                     height="600"
                     frameBorder="0"
