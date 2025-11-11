@@ -14,8 +14,9 @@ const Music = () => {
             className="p-6"
         >
             <div className="max-w-4xl mx-auto">
-                <div className="rounded-xl p-1 bg-gradient-to-r from-accent/60 via-accent/30 to-transparent">
-                    <div className="relative bg-primary rounded-lg shadow-xl overflow-hidden border-2 border-accent/40">
+                {/* Темный аккуратный фрейм (убран красный акцент) */}
+                <div className="rounded-xl p-1 bg-gradient-to-r from-neutral-900/60 via-neutral-800/30 to-transparent">
+                    <div className="relative bg-primary rounded-lg shadow-xl overflow-hidden border-2 border-neutral-800/60">
                         <header className="px-6 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                             <div>
                                 <h1 className="text-3xl md:text-4xl font-bold text-white">My Favorite Tracks</h1>
@@ -34,8 +35,8 @@ const Music = () => {
                         </header>
 
                         <section className="relative px-6 pb-6">
-                            <div className="relative rounded-lg overflow-hidden border-4 border-accent">
-                                <div className="absolute inset-0 -z-10 bg-gradient-to-br from-accent/10 to-transparent blur-sm opacity-90"></div>
+                            <div className="relative rounded-lg overflow-hidden border-4 border-neutral-800/50">
+                                <div className="absolute inset-0 -z-10 bg-gradient-to-br from-neutral-900/10 to-transparent blur-sm opacity-90"></div>
 
                                 {!loaded && (
                                     <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-primary/80">
@@ -47,7 +48,8 @@ const Music = () => {
                                 <iframe
                                     title="Spotify Playlist"
                                     src={playlistEmbed}
-                                    className="w-full h-[520px] md:h-[600px] lg:h-[600px] relative z-10 bg-black"
+                                    className="w-full h-[520px] md:h-[600px] lg:h-[600px] relative z-10"
+                                    style={{ backgroundColor: "#0b1020" }}
                                     frameBorder="0"
                                     allow="autoplay; clipboard-write; encrypted-media; fullscreen"
                                     loading="lazy"
