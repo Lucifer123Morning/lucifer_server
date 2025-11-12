@@ -1,20 +1,13 @@
-// javascript
 'use client'
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
-    FaHtml5,
-    FaCss3,
-    FaJs,
-    FaReact,
-    FaFigma,
-    FaNodeJs,
+    FaHtml5, FaCss3, FaJs, FaReact, FaNodeJs,
 } from 'react-icons/fa';
-import { SiTailwindcss, SiNextdotjs, SiTypescript } from 'react-icons/si';
+import { SiNextdotjs, SiTypescript } from 'react-icons/si';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip.jsx';
-import { ScrollArea } from './ui/scroll-area';
 
 const about = {
     title: 'About me',
@@ -32,7 +25,6 @@ const about = {
 };
 
 const experience = {
-    icon: '/assets/resume/badge.svg',
     title: "My experience",
     description: "I'm a software engineer developer",
     items: [
@@ -44,7 +36,6 @@ const experience = {
 };
 
 const education = {
-    icon: '/assets/resume/cap.svg',
     title: "My education",
     description: "I'm a software engineer developer",
     items: [
@@ -59,13 +50,13 @@ const skills = {
     title: "My skills",
     description: "I'm a software engineer developer",
     skills: [
-        { icon: <FaHtml5/>, name: 'html5' },
-        { icon: <FaCss3/>, name: 'css 3' },
-        { icon: <FaJs/>, name: 'javascript' },
-        { icon: <FaReact/>, name: 'react.js' },
-        { icon: <SiNextdotjs/>, name: 'next.js' },
-        { icon: <SiTypescript/>, name: 'typescript.js' },
-        { icon: <FaNodeJs/>, name: 'node.js' },
+        { icon: <FaHtml5 />, name: 'html5' },
+        { icon: <FaCss3 />, name: 'css 3' },
+        { icon: <FaJs />, name: 'javascript' },
+        { icon: <FaReact />, name: 'react.js' },
+        { icon: <SiNextdotjs />, name: 'next.js' },
+        { icon: <SiTypescript />, name: 'typescript' },
+        { icon: <FaNodeJs />, name: 'node.js' },
     ],
 };
 
@@ -73,34 +64,34 @@ export default function ResumeClient() {
     const [activeTab, setActiveTab] = useState('experience');
     const [mounted, setMounted] = useState(false);
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+    useEffect(() => setMounted(true), []);
 
     const inner = (
-        <div className="container mx-auto">
+        <div className="container mx-auto px-6">
             <Tabs
                 defaultValue="experience"
-                className="flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between gap-[60px] xl:gap-[100px] min-h-screen"
+                className="relative flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between gap-[60px] xl:gap-[100px] min-h-screen"
                 onValueChange={(v) => setActiveTab(v)}
             >
-                {/* Левая колонка */}
-                <div className="flex flex-col items-center justify-center w-full xl:w-[240px] h-auto xl:h-screen sticky top-0">
-                    <TabsList className="flex flex-col items-stretch justify-center gap-4 w-full bg-transparent border-none p-0">
+                {/* Sidebar: смещён вниз, имеет больший z-index, больше статичности (убран scale) */}
+                <div
+                    className="hidden xl:flex flex-col items-center justify-center w-[240px] h-screen sticky top-1/2 -translate-y-1/2">
+                    <TabsList
+                        className="flex flex-col items-center justify-center gap-4 w-full bg-transparent border-none p-0">
                         {[
-                            { value: "experience", label: "Experience" },
-                            { value: "education", label: "Education" },
-                            { value: "skills", label: "Skills" },
-                            { value: "about", label: "About me" },
+                            {value: "experience", label: "Experience"},
+                            {value: "education", label: "Education"},
+                            {value: "skills", label: "Skills"},
+                            {value: "about", label: "About me"},
                         ].map((tab) => (
                             <TabsTrigger
                                 key={tab.value}
                                 value={tab.value}
-                                className={`w-full text-left text-base font-semibold py-4 px-6 rounded-lg border-l-4 transition-all duration-300 ${
-                                    activeTab === tab.value
-                                        ? "border-accent text-accent bg-primary shadow-[0_0_10px_rgba(0,255,150,0.25)]"
-                                        : "border-transparent text-white/80 hover:text-accent"
-                                }`}
+                                className={`mx-auto block min-w-[150px] max-w-[220px] text-center text-sm font-medium py-2.5 px-5 rounded-full border-l-4 transition-all duration-300
+                                ${activeTab === tab.value
+                                    ? "border-accent text-accent bg-white/95 text-black shadow-[0_6px_18px_rgba(0,255,150,0.12)]"
+                                    : "border-transparent text-white/70 hover:text-accent hover:bg-primary/30"}
+                                `}
                             >
                                 {tab.label}
                             </TabsTrigger>
@@ -108,108 +99,76 @@ export default function ResumeClient() {
                     </TabsList>
                 </div>
 
-                <div className="flex-1">
-                    <TabsContent value='experience' className="w-full">
-                        <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                            <h3 className="text-4xl font-bold">{experience.title}</h3>
-                            <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">{experience.description}</p>
-                            <div className="max-h-[400px] overflow-auto">
-                                <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
-                                    {experience.items.map((item, index) => (
-                                        <li
-                                            key={index}
-                                            className="bg-bg-primary h-[184px] py-6 px-10 rounded-xl border-l-4 border-accent flex flex-col justify-center items-center lg:items-start gap-1 overflow-hidden"
-                                        >
-                                            <a href={item.url} target="_blank" rel="noopener noreferrer"
-                                               className="w-full h-full block">
-                                                <span className="text-accent">{item.duration}</span>
-                                                <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left truncate">
-                                                    {item.position}
-                                                </h3>
-                                                <div className="flex items-center gap-3">
-                                                    <span className="w-[6px] h-[6px] rounded-full bg-accent"/>
-                                                    <p className="text-white/60">{item.company}</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                    </TabsContent>
-
-                    <TabsContent value='education' className="w-full">
-                        <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                            <h3 className="text-4xl font-bold">{education.title}</h3>
-                            <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">{education.description}</p>
-                            <div className="max-h-[400px] overflow-auto">
-                                <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
-                                    {education.items.map((item, index) => (
-                                        <li
-                                            key={index}
-                                            className="bg-bg-primary h-[184px] py-6 px-10 rounded-xl border-l-4 border-accent flex flex-col justify-center items-center lg:items-start gap-1 overflow-hidden"
-                                        >
-                                            <a href={item.url} target="_blank" rel="noopener noreferrer"
-                                               className="w-full h-full block">
-                                                <span className="text-accent">{item.degree}</span>
-                                                <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left truncate">
-                                                    {item.duration}
-                                                </h3>
-                                                <div className="flex items-center gap-3">
-                                                    <span className="w-[6px] h-[6px] rounded-full bg-accent"/>
-                                                    <p className="text-white/60">{item.institution}</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                    </TabsContent>
-
-                    <TabsContent value='skills' className="w-full h-full">
-                        <div className="flex flex-col gap-[30px]">
-                            <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                                <h3 className="text-4xl font-bold">{skills.title}</h3>
-                                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">{skills.description}</p>
-                            </div>
-                            <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px]">
-                                {skills.skills.map((item, index) => (
-                                    <li key={index}>
-                                        <TooltipProvider delayDuration={100}>
-                                            <Tooltip>
-                                                <TooltipTrigger
-                                                    className="w-full h-[150px] bg-bg-primary border border-border-primary rounded-xl flex justify-center items-center group overflow-hidden">
-                                                    <span
-                                                        className="text-2xl group-hover:text-accent transition-all duration-300">
-                                                        {item.icon}
-                                                    </span>
-                                                </TooltipTrigger>
-                                                <TooltipContent>
-                                                    <p className="capitalize">{item.name}</p>
-                                                </TooltipContent>
-                                            </Tooltip>
-                                        </TooltipProvider>
+                {/* Right content */}
+                <div className="flex-1 space-y-12 relative z-10 xl:-mt-12">
+                    {/* Experience */}
+                    <TabsContent value="experience">
+                        <Section title={experience.title} desc={experience.description}>
+                            <ul className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                {experience.items.map((item, i) => (
+                                    <li key={i}
+                                        className="bg-bg-primary border-l-4 border-accent rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                                        <span className="text-accent">{item.duration}</span>
+                                        <h3 className="text-xl font-semibold mt-2">{item.position}</h3>
+                                        <p className="text-white/60">{item.company}</p>
                                     </li>
                                 ))}
                             </ul>
-                        </div>
+                        </Section>
                     </TabsContent>
 
-                    <TabsContent value='about' className="w-full text-center xl:text-left">
-                        <div className="flex flex-col gap-8 xl:gap-12">
-                            <h3 className="text-4xl font-bold text-gradient bg-clip-text text-transparent">{about.title}</h3>
-                            <p className="max-w-2xl text-white/80 mx-auto xl:mx-0 break-words">{about.description}</p>
-                            <ul className="grid grid-cols-1 xl:grid-cols-2 gap-8 max-w-3xl mx-auto xl:mx-0">
-                                {about.info.map((item, index) => (
-                                    <li key={index}
-                                        className="flex flex-col gap-4 items-start border border-border-primary p-6 rounded-xl bg-bg-primary shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out w-full break-words">
-                                        <span className="text-white/90 font-semibold text-lg">{item.fieldName}:</span>
-                                        <span className="text-xl text-white break-words">{item.fieldValue}</span>
+                    {/* Education */}
+                    <TabsContent value="education">
+                        <Section title={education.title} desc={education.description}>
+                            <ul className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                {education.items.map((item, i) => (
+                                    <li key={i}
+                                        className="bg-bg-primary border-l-4 border-accent rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                                        <span className="text-accent">{item.degree}</span>
+                                        <h3 className="text-xl mt-2">{item.duration}</h3>
+                                        <p className="text-white/60">{item.institution}</p>
                                     </li>
                                 ))}
                             </ul>
-                        </div>
+                        </Section>
+                    </TabsContent>
+
+                    {/* Skills */}
+                    <TabsContent value="skills">
+                        <Section title={skills.title} desc={skills.description}>
+                            <ul className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-6">
+                                {skills.skills.map((item, i) => (
+                                    <TooltipProvider key={i} delayDuration={100}>
+                                        <Tooltip>
+                                            <TooltipTrigger
+                                                className="h-[100px] bg-bg-primary border border-border-primary rounded-xl flex justify-center items-center group hover:border-accent transition-all">
+                        <span className="text-3xl text-white/80 group-hover:text-accent transition-colors">
+                          {item.icon}
+                        </span>
+                                            </TooltipTrigger>
+                                            <TooltipContent>
+                                                <p className="capitalize">{item.name}</p>
+                                            </TooltipContent>
+                                        </Tooltip>
+                                    </TooltipProvider>
+                                ))}
+                            </ul>
+                        </Section>
+                    </TabsContent>
+
+                    {/* About */}
+                    <TabsContent value="about">
+                        <Section title={about.title} desc={about.description}>
+                            <ul className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                                {about.info.map((item, i) => (
+                                    <li key={i}
+                                        className="bg-bg-primary border border-border-primary p-6 rounded-xl hover:border-accent transition-colors">
+                                        <p className="text-accent font-semibold">{item.fieldName}</p>
+                                        <p className="text-white">{item.fieldValue}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </Section>
                     </TabsContent>
                 </div>
             </Tabs>
@@ -219,14 +178,21 @@ export default function ResumeClient() {
     return mounted ? (
         <motion.div
             initial={{opacity: 0}}
-            animate={{ opacity: 1, transition: { delay: 2.4, duration: 0.4, ease: 'easeIn' } }}
-            className="min-h-[80vh] flex items-start justify-start py-12 xl:py-0"
+            animate={{opacity: 1, transition: {delay: 0.4, duration: 0.6, ease: 'easeInOut'}}}
+            className="py-12"
         >
             {inner}
         </motion.div>
-    ) : (
-        <div className="min-h-[80vh] flex items-start justify-start py-12 xl:py-0">
-            {inner}
+    ) : <div>{inner}</div>;
+}
+
+// ✨ Дополнительный компонент для секций
+function Section({title, desc, children}) {
+    return (
+        <div className="flex flex-col gap-6 text-center xl:text-left">
+            <h3 className="text-3xl font-bold text-accent">{title}</h3>
+            <p className="max-w-[600px] text-white/70 mx-auto xl:mx-0">{desc}</p>
+            {children}
         </div>
     );
 }
